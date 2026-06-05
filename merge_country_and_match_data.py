@@ -4,7 +4,20 @@ def blank():
     return 0
 
 def calculate_more_expensive_winner(row):
-    if row["Home_GDP"]
+    if row["Home_GDP"]==row["Away_GDP"] or row["home_score"]==row["away_score"]:
+        return 0
+    elif row["Home_GDP"]>row["Away_GDP"]:
+        if row["home_score"]>row["away_score"]:
+            return 1
+        else:
+            return -1
+    elif row["Home_GDP"]<row["Away_GDP"]:
+        if row["home_score"]<row["away_score"]:
+            return 1
+        else:
+            return -1
+    return 0
+        
 def main():
     gdp_df=pd.read_excel("country-gdp-by-year.xlsx")
     world_cup_df=pd.read_excel("world-cup-results.xlsx")
@@ -36,7 +49,8 @@ def main():
     world_cup_df=world_cup_df[world_cup_df["Home_GDP"].notna()]
     world_cup_df=world_cup_df[world_cup_df["Away_GDP"].notna()]
 
-    world_cup_df["More_Expensive_Winner"]=world_cup_df.apply(calculate_more_expensive_winner,axis=1)
+    world_cup_df["Wealthier_Winner"]=world_cup_df.apply(calculate_more_expensive_winner,axis=1)
+    print(world_cup_df["Wealthier_Winner"].describe())
     print(world_cup_df.head())
     world_cup_df.to_excel("world-cup-results-gdp.xlsx")
 
