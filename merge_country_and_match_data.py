@@ -19,8 +19,8 @@ def calculate_more_expensive_winner(row):
     return 0
         
 def main():
-    gdp_df=pd.read_excel("country-gdp-by-year.xlsx")
-    world_cup_df=pd.read_excel("world-cup-results.xlsx")
+    gdp_df=pd.read_excel("data/country-gdp-by-year.xlsx")
+    world_cup_df=pd.read_excel("data/world-cup-results.xlsx")
     world_cup_df["year"]=world_cup_df["date"].dt.year
 
     gdp_dict=defaultdict(blank)
@@ -52,7 +52,7 @@ def main():
     world_cup_df["Wealthier_Winner"]=world_cup_df.apply(calculate_more_expensive_winner,axis=1)
     print(world_cup_df["Wealthier_Winner"].describe())
     print(world_cup_df.head())
-    world_cup_df.to_excel("world-cup-results-gdp.xlsx")
+    world_cup_df.to_excel("merged_results/world-cup-results-gdp.xlsx")
 
 if __name__=="__main__":
     main()
