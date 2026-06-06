@@ -1,0 +1,7 @@
+# MS Office lock/temp files (e.g., ~$document.docx)
+~$*
+
+# Editor backup files (e.g., document.docx~)
+*~
+
+git rm --cached ~$rld Cup vs GDP Report.docx
